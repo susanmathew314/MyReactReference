@@ -1,38 +1,149 @@
-.App {
+.App{
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+
+p{
+  margin-top: 20px;
+  font-size: 24px;
+  text-align: center;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+button{
+  padding: 10px;
+  margin: 20px 10px;
+  font-size: 16px;
+  color: #FFFFFF;
+  border: 0px;
+  border-radius: 5px;
+  cursor: pointer;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+button.add{
+  background-color: #18978F;
+}
+
+button.sub{
+  background-color: #EB4747;
+}
+
+button.reset{
+  background-color: #0F3460;
+}
+
+button.delet{
+  background-color: #ed6036;
+}
+
+
+ul{
+  max-width: 600px;
+  margin: 50px auto;
+  padding: 20px;
+  box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
+}
+
+li{
+  font: 16px;
+  list-style: none;
+  margin: 20px 5px;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+  border-radius: 5px;
+  padding: 10px;
   display: flex;
-  flex-direction: column;
+  justify-content: space-between;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
 }
 
-.App-link {
-  color: #61dafb;
+li.completed{
+  box-shadow: rgb(62, 150, 0) 0px 1px 4px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+li.incomplete{
+  box-shadow: rgba(135, 20, 0, 0.689) 0px 1px 4px;
 }
+
+button.delete{
+  border: 0px;
+  border-radius: 5px;
+  background-color: #be3434;
+  color: #FFFFFF;
+  padding: 5px 10px;
+  cursor: pointer;
+}
+
+button.trigger{
+  border: 0px;
+  border-radius: 5px;
+  background-color: #0F3460;
+  color: #FFFFFF;
+  padding: 5px 10px;
+  cursor: pointer;
+}
+
+.box{
+  width: 400px;
+  margin: 20px auto;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+  padding: 20px 5px;
+  border: 0px;
+  border-radius: 5px;
+}
+
+.box.success{
+  background-color: #baffbf;
+  color:#000;
+}
+
+.box.alert{
+  background-color: #ffb4b4;
+  color:#000;
+}
+
+.box.warning{
+  background-color: #ca9a60;
+  color:#000;
+}
+
+.box p{
+  margin: 10px;
+}
+
+.box p.title{
+  font-size: 20px;
+}
+
+.box p.description{
+  font-size: 14px;
+}
+
+.hidden{
+  display: none;
+}
+
+.logo{
+  width:40px;
+  height:40px;
+  padding:20px;
+  display:inline;
+}
+
+.hidden{
+  display: none;
+}
+
+.logoDiv{
+  display: flex;
+  align-items:center;
+  flex-direction: row;
+  width:40%;
+
+}
+
+header{
+  display: flex;
+  align-items:center;
+  flex-direction: row;
+  margin:20px;
+}
+
