@@ -12,11 +12,15 @@ import {SimilarType} from './components/SimilarType';
 
 import  { AddTask } from './components/AddTask';
 import { useState, useEffect } from 'react';
+import { useFetch } from "./hooks/useFetch";
+
+
 
 const App = () => {
   const userName="Susan";
   const footerInfo ="Random message for propdrilling";
-
+  const [url, setUrl] = useState("http://localhost:8000/tasks");
+  const { data:tasks, loading, error } = useFetch(url); //destructure
 
 
 
@@ -35,20 +39,17 @@ const App = () => {
   // Step 2: Remove the constant taskList and use an empty array
 
   //const [tasks, setTasks] = useState(taskList);
-  const [tasks, setTasks] = useState([]);
+  const [localtasks, setTasks] = useState([]);
 
   // Step 3: Fetch the task list from db.json using useEffect
-  useEffect(() => {
-    const fetchTasks = async () => {
-      const res = await fetch('http://localhost:8000/tasks');
-      const data = await res.json();
+ useEffect(() => {
+  if(tasks){
+    setTasks(tasks)
+  }
+},[tasks]);
 
-      console.log(data);
-      setTasks(data);
-    };
 
-    fetchTasks();
-  }, []); // Empty dependency array means this effect runs once on mount
+
 
 
 
@@ -75,10 +76,13 @@ const App = () => {
       <MyTask />
 
       Add a task to existing one
-      <AddTask   tasks={tasks} setTasks={setTasks} />
+    
+      <AddTask   tasks={localtasks} setTasks={setTasks} loading={loading} />
       <h1>How to use Props from parent to child</h1>
   
-      <TaskwithProps  tasks={tasks} setTasks={setTasks} />
+      {loading && <p>Loader</p>}
+  {error && <p>Failed to fetch</p>}
+      <TaskwithProps  tasks={localtasks} setTasks={setTasks} />
 
       <h1>Create reusable similar type components with different data and classes. example, succes, warning and alert box</h1>
       <SimilarType />

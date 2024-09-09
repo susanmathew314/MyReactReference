@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Card } from './Card';
 import { NewCard } from './NewCard';
-export const TaskwithProps = ({tasks, setTasks}) => {
+export const TaskwithProps = ({tasks, setTasks, loading}) => {
 
 
   /* moving task list to parent componet for passing data to adjustant components
@@ -73,7 +73,7 @@ export const TaskwithProps = ({tasks, setTasks}) => {
 
 <h1>Task with props as seperate values in child component. this is the proper way of using child component. Pass the one task and the function as attributes in the child component directive</h1>
 Also pass the key also to the child directive to fix the error with key. 
-
+{loading &<p>Loading Products</p>}
 <ul>
 {show && tasks.map((task)=>(
     <NewCard  key={task.id} task={task} handleDelete={handleDelete} />
