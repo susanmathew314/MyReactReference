@@ -21,10 +21,32 @@ export const TaskwithProps = ({tasks, setTasks}) => {
 
 
 
-  function handleDelete(id){
+/*   function handleDelete(id){
     console.log(id);
     setTasks(tasks.filter(task => task.id !== id));
-  }
+  } */
+
+
+
+      // Function to delete task from server and update state
+  const handleDelete = async (id) => {
+    console.log("Attempting to delete task with ID:", id); // Check ID
+    try {
+      // Delete the task from the server
+      const response = await fetch(`http://localhost:8000/tasks/${id}`, {
+        method: 'DELETE',
+    });
+
+       // If the delete request was successful, update the local state
+       if (response.ok) {
+        setTasks(tasks.filter(task => task.id !== id));
+    } else {
+        console.error('Failed to delete the task on the server');
+    }
+    } catch (error) {
+        console.error('Error deleting task:', error);
+    }
+  };
 
 
   return (

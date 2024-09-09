@@ -11,19 +11,45 @@ import {MyTask} from "./components/MyTask";
 import {SimilarType} from './components/SimilarType';
 
 import  { AddTask } from './components/AddTask';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 const App = () => {
   const userName="Susan";
   const footerInfo ="Random message for propdrilling";
 
 
-  const taskList=[
+
+
+
+
+ /*  const taskList=[
     {id: 5271, name: "Record React Lectures", completed: true}, 
     {id: 7825, name: "Edit React Lectures", completed: false}, 
     {id: 8391, name: "Watch Lectures", completed: false}
-  ]
-  const [tasks, setTasks] = useState(taskList);
+  ] */
+ 
+
+
+
+
+  // Step 2: Remove the constant taskList and use an empty array
+
+  //const [tasks, setTasks] = useState(taskList);
+  const [tasks, setTasks] = useState([]);
+
+  // Step 3: Fetch the task list from db.json using useEffect
+  useEffect(() => {
+    const fetchTasks = async () => {
+      const res = await fetch('http://localhost:8000/tasks');
+      const data = await res.json();
+
+      console.log(data);
+      setTasks(data);
+    };
+
+    fetchTasks();
+  }, []); // Empty dependency array means this effect runs once on mount
+
 
 
   return (

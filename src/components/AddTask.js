@@ -15,17 +15,51 @@ export const AddTask = ({tasks, setTasks}) => {
         setProgress(false);
     }
 
+
+    // Function to post data to the server, or Adding a task back
+    const postTask = async (task) => {
+        try {
+            const response = await fetch("http://localhost:8000/tasks", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(task),
+            });
+            if (!response.ok) {
+                throw new Error("Failed to post task");
+            }
+            const newTask = await response.json();
+            // Update the state with the newly added task from the server
+            setTasks([...tasks, newTask]);
+        } catch (error) {
+            console.error("Error:", error);
+        }
+    };
+
+
+    const generateId = () => {
+        return Date.now();  // Generates a unique timestamp as the ID
+      };
+
+
     const handleSubmit = (event) => {
         event.preventDefault();
         const task = {
-            id: Math.floor(Math.random() * 10000),
+           //id: Math.floor(Math.random() * 100000),
+           //id: Date.now(),
+           id:generateId(),
             name: taskValue,
             completed: Boolean(progress)
         }
 
-        setTasks([...tasks, task])
+       // setTasks([...tasks, task])
+
+       // to save data back to json 
+        postTask(task);
         // before reset add data to tasks list
         handleReset();
+       
         console.log(task); // You might want to do something with the task here
     }
 
